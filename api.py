@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    #config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
-    #pdfkit.from_url('http://google.com', 'out.pdf', configuration=config)
+    config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')
+    pdfkit.from_url('http://google.com', '/tmp/out.pdf', configuration=config)
     return "Hello, World!"
 
 if __name__ == '__main__':
