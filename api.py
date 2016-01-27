@@ -1,5 +1,7 @@
-from flask import Flask, make_response, send_file, redirect
+import os
 import pdfkit
+import urllib
+from flask import Flask, send_file, redirect, request
 
 app = Flask(__name__)
 
@@ -11,26 +13,13 @@ def index():
 def api():
     return "Hello, World!"
 
-@app.route('/api/download')
+@app.route('/api/download', methods=['GET'])
 def download():
-    config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
-    file_name = 'out.pdf'
-    pdf = pdfkit.from_url('http://google.com', file_name, configuration=config)
-    return send_file(file_name, as_attachment=True, mimetype='application/pdf')
-
-@app.route('/api/test/download_csv')
-def download_csv():
-    csv = """"REVIEW_DATE","AUTHOR","ISBN","DISCOUNTED_PRICE"
-            "1985/01/21","Douglas Adams",0345391802,5.95
-            "1990/01/12","Douglas Hofstadter",0465026567,9.95
-            "1998/07/15","Timothy ""The Parser"" Campbell",0968411304,18.99
-            "1999/12/03","Richard Friedman",0060630353,5.95
-            "2004/10/04","Randel Helms",0879755725,4.50"""
-    response = make_response(csv)
-    response.headers["Content-Disposition"] = \
-        "attachment; filename=books.csv"
-    return response
-
+    config = pdfkit.configuration(wkhtmltopdf=os.environ['WKHTMLTOPDF_PATH'])
+    output_name = str(request.args.get('output_name'))
+    url = str(urllib.unquote(request.args.get('url').decode('utf8')))
+    pdf = pdfkit.from_url(url, output_name, configuration=config)
+    return send_file(output_name, as_attachment=True, mimetype='application/pdf')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
