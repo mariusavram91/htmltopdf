@@ -15,11 +15,8 @@ def api():
 def download():
     config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
     file_name = 'out.pdf'
-    pdf = pdfkit.from_url('http://google.com', '/app/tmp/' + file_name, configuration=config)
-    response = make_response(pdf)
-    response.headers["Content-Disposition"] = \
-        "attachment; filename=" + file_name
-    return response
+    pdf = pdfkit.from_url('http://google.com', file_name, configuration=config)
+    return send_file(file_name, as_attachment=True, mimetype='application/pdf')
 
 @app.route('/api/test/download_csv')
 def download_csv():
