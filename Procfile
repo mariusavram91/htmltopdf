@@ -1,1 +1,1 @@
-web: gunicorn htmltopdf.wsgi --log-file -
+web: gunicorn --log-file -
