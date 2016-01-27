@@ -10,7 +10,7 @@ def index():
     return "Hello, World!"
 
 @app.route('/download')
-def index():
+def download():
     config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
     file_name = 'out.pdf'
     pdfkit.from_url('http://google.com', 'tmp/' + file_name, configuration=config)
@@ -20,7 +20,7 @@ def index():
     return make_response((body, headers))
 
 @app.route('/download_csv')
-def download():
+def download_csv():
     csv = """"REVIEW_DATE","AUTHOR","ISBN","DISCOUNTED_PRICE"
             "1985/01/21","Douglas Adams",0345391802,5.95
             "1990/01/12","Douglas Hofstadter",0465026567,9.95
