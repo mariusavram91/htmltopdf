@@ -13,9 +13,9 @@ def index():
 def download():
     config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
     file_name = 'out.pdf'
-    pdfkit.from_url('http://google.com', 'tmp/' + file_name, configuration=config)
+    pdfkit.from_url('http://google.com', '/app/tmp/' + file_name, configuration=config)
     headers = {"Content-Disposition": "attachment; filename=%s" % file_name}
-    with open('tmp/' + file_name, 'r') as f:
+    with open('/app/tmp/' + file_name, 'r') as f:
         body = f.read()
     return make_response((body, headers))
 
