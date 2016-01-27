@@ -15,7 +15,7 @@ def download():
     file_name = 'out.pdf'
     pdfkit.from_url('http://google.com', '/app/tmp/' + file_name, configuration=config)
     with open('/app/tmp/' + file_name, 'rb') as static_file:
-        return send_file(static_file, attachment_filename=file_name)
+        return send_file(static_file, as_attachment=True, mimetype='application/pdf',  attachment_filename=file_name)
 
 @app.route('/download_csv')
 def download_csv():
