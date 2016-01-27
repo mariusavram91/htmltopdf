@@ -1,4 +1,4 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, send_file
 import pdfkit
 
 app = Flask(__name__)
@@ -14,10 +14,8 @@ def download():
     config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
     file_name = 'out.pdf'
     pdfkit.from_url('http://google.com', '/app/tmp/' + file_name, configuration=config)
-    headers = {"Content-Disposition": "attachment; filename=%s" % file_name}
-    with open('/app/tmp/' + file_name, 'r') as f:
-        body = f.read()
-    return make_response((body, headers))
+    with open('/app/tmp/' + file_name, 'rb') as static_file:
+        return send_file(static_file, attachment_filename=file_name)
 
 @app.route('/download_csv')
 def download_csv():
