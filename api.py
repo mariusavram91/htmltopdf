@@ -1,23 +1,27 @@
-from flask import Flask, make_response, send_file
+from flask import Flask, make_response, send_file, redirect
 import pdfkit
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    #config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
-    #pdfkit.from_url('http://google.com', 'tmp/out.pdf', configuration=config)
+    return redirect("api")
+
+@app.route('/api')
+def api():
     return "Hello, World!"
 
-@app.route('/download')
+@app.route('/api/download')
 def download():
     config = pdfkit.configuration(wkhtmltopdf='bin/wkhtmltopdf')
     file_name = 'out.pdf'
-    pdfkit.from_url('http://google.com', '/app/tmp/' + file_name, configuration=config)
-    with open('/app/tmp/' + file_name, 'rb') as static_file:
-        return send_file(static_file, as_attachment=True, mimetype='application/pdf',  attachment_filename=file_name)
+    pdf = pdfkit.from_url('http://google.com', '/app/tmp/' + file_name, configuration=config)
+    response = make_response(pdf)
+    response.headers["Content-Disposition"] = \
+        "attachment; filename=" + file_name
+    return response
 
-@app.route('/download_csv')
+@app.route('/api/test/download_csv')
 def download_csv():
     csv = """"REVIEW_DATE","AUTHOR","ISBN","DISCOUNTED_PRICE"
             "1985/01/21","Douglas Adams",0345391802,5.95
