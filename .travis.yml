@@ -7,7 +7,7 @@ script:
 - python tests.py
 deploy:
   provider: heroku
-  apikey: $HEROKU_API_KEY
+  api_key: $HEROKU_API_KEY
   app: htmltopdfapi
   on:
     repo: mariusavram91/htmltopdf
