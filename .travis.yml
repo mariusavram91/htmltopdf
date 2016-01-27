@@ -12,6 +12,3 @@ deploy:
   app: htmltopdfapi
   on:
     repo: mariusavram91/htmltopdf
-after_deploy:
-  - sudo ./install-dependencies.sh
-  - whereis wkhtmltopdf
