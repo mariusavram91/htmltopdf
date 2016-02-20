@@ -5,14 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
     <title>HTMLtoPDF by mariusavram91</title>
   </head>
@@ -32,17 +25,15 @@
           <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Submit a URL and an output name for the PDF file.</h3>
         </section>
         <section id="api">
-          <div class="container" style="padding-top: 25px;">
-            <div class="input-group">
-              <span class="input-group-addon" id="url">URL</span>
-              <input type="text" class="form-control url" aria-describedby="id">
-              <span class="input-group-addon" id="output-name">Output Name</span>
-              <input type="text" class="form-control name" aria-describedby="output-name">
-              <span class="input-group-addon loading" style="display: none;">
-                <i class="fa fa-spinner fa-pulse"></i> Loading...
-              </span>
-              <button class="btn btn-primary" title="Download PDF" onclick="download_pdf()">Download</button>
-            </div>
+          <div class="input-group">
+            <span class="input-group-addon" id="url">URL</span>
+            <input type="text" class="form-control url" aria-describedby="id">
+            <span class="input-group-addon" id="output-name">Output Name</span>
+            <input type="text" class="form-control name" aria-describedby="output-name">
+            <span class="input-group-addon loading" style="display: none;">
+              <i class="fa fa-spinner fa-pulse"></i> Loading...
+            </span>
+            <button class="btn btn-primary" title="Download PDF" onclick="download_pdf()">Download</button>
           </section>
         </div>
       </div>
