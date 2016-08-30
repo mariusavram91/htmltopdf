@@ -11,8 +11,7 @@ def index():
 
 @app.route('/api')
 def api():
-    return "Welcome to htmltopdf API! \
-        Example: http://htmltopdf.mariusavram.com/api/download?url=http://resume.mariusavram.com&output_name=marius-avram-resume.pdf"
+    return "Welcome to htmltopdf API! Example: http://htmltopdf.mariusavram.com/api/download?url=http://resume.mariusavram.com&output_name=marius-avram-resume.pdf"
 
 @app.route('/api/download', methods=['GET'])
 def download():
